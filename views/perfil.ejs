@@ -7,6 +7,16 @@
     <title>Perfil de usuario</title>
 </head>
 <body>
-    <h1>Perfil de usuario</h1>
+    <h1>Tu Perfil</h1>
+    <br>
+    <h3>Nombre Completo:</h3>
+    <h3>Correo Electronico:</h3>
+    <br>
+    <button><a href="/usuario/editar/<%= usuarios.id %> ">Editar perfil</a></button>
+    <form action="/usuario/borrar/<%= usuarios.id %>?_method=DELETE" method="POST">
+        <button type="submit">Borrar perfil</button>
+    </form>
+    <br>
+    <button><a href="/">Volver al listado de peliculas</a></button>
 </body>
 </html>

@@ -7,6 +7,25 @@
     <title>Ingresar</title>
 </head>
 <body>
-    <h1>Ingresar</h1>
+    <h1>Ingrese a su cuenta:</h1>
+    <br>
+    <form action="/usuario/acceder" method="POST">
+        <fieldset>
+            <label for="correo">Correo Electronico:</label>
+            <input type="text" name="correo">
+        </fieldset>
+        <fieldset>
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" name="clave">
+        </fieldset>
+        <fieldset>
+            <p>¿No estas registrado?</p>
+            <p>Unite <a href="/usuario/registrarse">aca</i></a></p>
+        </fieldset>
+        <fieldset>
+            <button type="submit">Ingresar</button>
+            <button type="reset">Resetear</button>
+        </fieldset>
+    </form>
 </body>
 </html>

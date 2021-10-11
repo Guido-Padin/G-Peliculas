@@ -7,6 +7,28 @@
     <title>Editar Usuario</title>
 </head>
 <body>
-    <h1>Formulario de edicion de usuario</h1>
+    <h1>Edita tu perfil:</h1>
+    <form action="/usuario/actualizar/<%= usuarios.id %>?_method=PUT" method="POST">
+        <fieldset>
+            <label for="nombreCompleto">Nombre Completo:</label>
+            <input type="text" name="nombre">
+        </fieldset>
+        <fieldset>
+            <label for="correo">Correo Electronico:</label>
+            <input type="text" name="correo">
+        </fieldset>
+        <fieldset>
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" name="clave">
+        </fieldset>
+        <fieldset>
+            <label for="confirmarContraseña">Confirmar Contraseña:</label>
+            <input type="password" name="confirmarClave">
+        </fieldset>
+        <fieldset>
+            <button type="submit">Editar</button>
+            <button type="reset">Resetear</button>
+        </fieldset>
+    </form>
 </body>
 </html>
