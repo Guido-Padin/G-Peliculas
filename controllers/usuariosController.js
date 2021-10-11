@@ -1,5 +1,5 @@
 //require de db models
-//require de bcrypt
+const bcrypt = require('bcryptjs');
 //require de express validator
 
 module.exports = {
