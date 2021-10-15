@@ -8,11 +8,15 @@ CREATE TABLE users (
   password varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   admin BIT NOT NULL,
   remember_token varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  created_at timestamp NULL DEFAULT NULL,
+  updated_at timestamp NULL DEFAULT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY users_email_unique (email)
 );
 CREATE TABLE genres (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  created_at timestamp NULL DEFAULT NULL,
+  updated_at timestamp NULL DEFAULT NULL,
   name varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   ranking int(10) unsigned NOT NULL,
   active tinyint(1) NOT NULL DEFAULT 1,
@@ -21,6 +25,8 @@ CREATE TABLE genres (
 );
 CREATE TABLE movies (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  created_at timestamp NULL DEFAULT NULL,
+  updated_at timestamp NULL DEFAULT NULL,
   title varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   rating decimal(3,1) unsigned NOT NULL,
   awards int(10) unsigned NOT NULL DEFAULT 0,
@@ -33,6 +39,8 @@ CREATE TABLE movies (
 );
 CREATE TABLE actors (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  created_at timestamp NULL DEFAULT NULL,
+  updated_at timestamp NULL DEFAULT NULL,
   first_name varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   last_name varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   rating decimal(3,1) DEFAULT NULL,
@@ -43,6 +51,8 @@ CREATE TABLE actors (
 );
 CREATE TABLE actor_movie (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  created_at timestamp NULL DEFAULT NULL,
+  updated_at timestamp NULL DEFAULT NULL,
   actor_id int(10) unsigned NOT NULL,
   movie_id int(10) unsigned NOT NULL,
   PRIMARY KEY (id),

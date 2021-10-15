@@ -20,7 +20,7 @@ module.exports = (sequelize, dataTypes) => {
         active: {
             type: dataTypes.BOOLEAN(),
             notNull: true,
-            default: 1,
+            defaultValue: 1,
         }
     }
     let config = {
@@ -29,6 +29,13 @@ module.exports = (sequelize, dataTypes) => {
     }
 
     const Genre = sequelize.define(alias,cols,config)
+
+    Genre.associate = function(models){
+        Genre.hasMany(models.Movie, {
+            as: "genre",
+            foreignKey: "genre_id"
+        })
+    }
 
     return Genre
 }
