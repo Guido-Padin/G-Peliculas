@@ -12,16 +12,28 @@
     <h3>RATING: <%= pelicula.rating %></h3>
     <h3>PREMIOS: <%= pelicula.awards %></h3>
     <h3>FECHA DE ESTRENO: <%= pelicula.release_date %></h3>
-    <h3>DURACIÓN: <%= pelicula.length %> minutos</h3>
-    <h3>GENERO: <%= pelicula.genre.name %></h3>
+    <h3>DURACIÓN: <% if (pelicula.length == null) { %>
+        esta pelicula aún no tiene duración 
+    <% } else { %>
+        <%= pelicula.length %> 
+    <% } %></h3>
+    <h3>GENERO: <% if (pelicula.genre == null) { %>
+        esta pelicula aún no tiene genero 
+    <% } else { %>
+        <%= pelicula.genre.name %> 
+    <% } %></h3>
     <h3>REPARTO:</h3>
-    <ul>
-        <% pelicula.actors.forEach(actor => { %>
-            <li>
-                <%= actor.first_name + " " + actor.last_name %>
-            </li>
-        <% }) %>
-    </ul>
+    <% if (pelicula.actors != null) { %> 
+        <ul>
+            <% pelicula.actors.forEach(actor => { %>
+                <li>
+                    <%= actor.first_name + " " + actor.last_name %>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <h3>pelicula aún no tiene reparto</h3> 
+    <% } %>
     <br>
     <button><a href="/pelicula/editar/<%= pelicula.id %>">Editar pelicula</a></button>
     <form action="/pelicula/borrar/<%= pelicula.id %>?_method=DELETE" method="POST">

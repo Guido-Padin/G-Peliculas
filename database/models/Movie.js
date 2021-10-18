@@ -40,10 +40,11 @@ module.exports = (sequelize, dataTypes) => {
     }
     let config = {
         tableName: "movies",
-        timestamps: false,
-        /*createdAt: "created_at",
+        timestamps: true,
+        createdAt: "created_at",
         updatedAt: "updated_at",
-        paranoid: true*/
+        deletedAt: "deleted_at",
+        paranoid: true
     }
 
     const Movie = sequelize.define(alias,cols,config)

@@ -21,10 +21,11 @@ module.exports = (sequelize, dataTypes) => {
     }
     let config = {
         tableName: "actor_movie",
-        timestamps: false,
-        /*createdAt: "created_at",
+        timestamps: true,
+        createdAt: "created_at",
         updatedAt: "updated_at",
-        paranoid: true*/
+        deletedAt: "deleted_at",
+        paranoid: true
     }
 
     const Actor_Movie = sequelize.define(alias,cols,config)

@@ -28,14 +28,9 @@ module.exports = {
             let peliculas = await db.Movie.findAll();
             let peliculaReciente = peliculas[peliculas.length - 1];
             
-            await actores.forEach(actor => {
-                db.Actor_Movie.create({
-                    actor_id: actor,
-                    movie_id: peliculaReciente.id
-                });
-            });
+            await peliculaReciente.setActors(actores)
 
-            return res.redirect("/")
+            return res.redirect("/pelicula/detalle/" + peliculaReciente.id)
         }
         catch (error) {
             console.log(error)
@@ -52,7 +47,7 @@ module.exports = {
     actualizar: async (req,res) => {
         try{
             let actores = req.body.actores 
-            //return res.send(actores)
+            
             let pelicula = await db.Movie.findByPk(req.params.id);
 
             await db.Movie.update({
@@ -64,21 +59,9 @@ module.exports = {
                 genre_id: req.body.genero
         },{ where: { id: req.params.id }});
             
-            /*actores.forEach(actor => {
-                db.Actor_Movie.update({
-                    actor_id: actor
-                },{ where: { movie_id: req.params.id }});
-            });*/
-            await db.Actor_Movie.destroy({where: {movie_id: req.params.id}});
-
-            await actores.forEach(actor => {
-                db.Actor_Movie.create({
-                    actor_id: actor,
-                    movie_id: pelicula.id
-                });
-            });
+            await pelicula.setActors(actores)
             
-            return res.redirect("/")
+            return res.redirect("/pelicula/detalle/" + pelicula.id)
         }
         catch (error) {
             console.log(error)
@@ -98,5 +81,5 @@ module.exports = {
             console.log(error)
             res.send(error);
         }
-    } 
+    }
 }
