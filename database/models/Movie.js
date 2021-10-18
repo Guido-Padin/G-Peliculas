@@ -40,7 +40,10 @@ module.exports = (sequelize, dataTypes) => {
     }
     let config = {
         tableName: "movies",
-        timestamps: false
+        timestamps: false,
+        /*createdAt: "created_at",
+        updatedAt: "updated_at",
+        paranoid: true*/
     }
 
     const Movie = sequelize.define(alias,cols,config)
@@ -50,10 +53,11 @@ module.exports = (sequelize, dataTypes) => {
             as: "genre",
             foreignKey: "genre_id",
         })
-        Movie.belongsToMany(models.Actor_Movie, {
-            through: "Actor_Movie",
+        Movie.belongsToMany(models.Actor, {
             as: "actors",
+            through: "Actor_Movie",
             foreignKey: "movie_id",
+            otherKey: "actor_id"
         })
     }
 

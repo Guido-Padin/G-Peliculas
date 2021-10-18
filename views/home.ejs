@@ -11,10 +11,15 @@
     <br>
     <button><a href="/usuario/ingresar">Ingresar</a></button>
     <button><a href="/usuario/registrarse">Registrarse</a></button>
+    <button><a href="/usuario/cerrarSesion">Cerrar Sesión</a></button>
     <br>
     <h2>Nuestra seleccion de peliculas:</h2>
-    <button></button>
+    <button><a href="pelicula/crear">Añadir pelicula</a></button>
     <br>
-
+    <ul>
+        <% peliculas.forEach(pelicula => { %>
+            <li><a href="/pelicula/detalle/<%= pelicula.id %>"><%= pelicula.title %></a></li>
+            <% }) %>
+    </ul>
 </body>
 </html>

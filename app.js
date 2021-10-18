@@ -15,6 +15,7 @@ app.set("port", process.env.PORT || 3000);
 app.listen(app.get("port"), () => console.log("Server start in http://localhost:"+app.get("port")));
 
 //------Configuraciones------
+app.use(express.urlencoded({ extended: false}));
 app.use(methodOverride('_method'));
 app.use(session({secret:"Buenas pelis"}));
 

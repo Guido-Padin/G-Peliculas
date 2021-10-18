@@ -4,17 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de pelicula</title>
+    <title>Detalle de <%= pelicula.title %> </title>
 </head>
 <body>
-    <h1>Toda la info de Pelicula</h1>
-    <p>nombre</p>
-    <p>año</p>
-    <p>actores</p>
-    <p>etc</p>
+    <h1>Toda nuestra información de <%= pelicula.title %></h1>
+    <h3>TITULO: <%= pelicula.title %></h3>
+    <h3>RATING: <%= pelicula.rating %></h3>
+    <h3>PREMIOS: <%= pelicula.awards %></h3>
+    <h3>FECHA DE ESTRENO: <%= pelicula.release_date %></h3>
+    <h3>DURACIÓN: <%= pelicula.length %> minutos</h3>
+    <h3>GENERO: <%= pelicula.genre.name %></h3>
+    <h3>REPARTO:</h3>
+    <ul>
+        <% pelicula.actors.forEach(actor => { %>
+            <li>
+                <%= actor.first_name + " " + actor.last_name %>
+            </li>
+        <% }) %>
+    </ul>
     <br>
-    <button><a href="/pelicula/editar/<%= peliculas.id %>">Editar pelicula</a></button>
-    <form action="/pelicula/borrar/<%= peliculas.id %>?_method=DELETE" method="POST">
+    <button><a href="/pelicula/editar/<%= pelicula.id %>">Editar pelicula</a></button>
+    <form action="/pelicula/borrar/<%= pelicula.id %>?_method=DELETE" method="POST">
         <button type="submit">Borrar pelicula</button>
     </form>
 </body>

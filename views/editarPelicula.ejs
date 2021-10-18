@@ -4,29 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=h1, initial-scale=1.0">
-    <title>Edicion de Pelicula</title>
+    <title>Editar <%= pelicula.title %></title>
 </head>
 <body>
     <h1>Formulario de edicion de pelicula</h1>
     <br>
-    <form action="/pelicula/actualizar/<%= peliculas.id %>?_method=PUT" method="POST">
+    <form action="/pelicula/actualizar/<%= pelicula.id %>?_method=PUT" method="POST">
         <fieldset>
             <label for="titulo">Titulo:</label>
             <input type="text" name="titulo">
         </fieldset>
         <fieldset>
-            <label for="correo">Correo Electronico:</label>
-            <input type="text" name="correo">
+            <label for="rating">Rating:</label>
+            <input type="number" name="rating">
         </fieldset>
         <fieldset>
-            <label for="contraseña">Contraseña:</label>
-            <input type="password" name="clave">
+            <label for="premios">Premios:</label>
+            <input type="number" name="premios">
         </fieldset>
         <fieldset>
-            <label for="confirmarContraseña">Confirmar Contraseña:</label>
-            <input type="password" name="confirmarClave">
+            <label for="fechaDeEstreno">Fecha de estreno:</label>
+            <input type="date" name="fechaDeEstreno">
         </fieldset>
         <fieldset>
+            <label for="duracion">Duracion de la pelicula (en minutos):</label>
+            <input type="number" name="duracion">
+        </fieldset>
+        <fieldset>
+            <label for="genero">Genero:</label>
+            <% generos.forEach(genero => { %>
+                <input type= "radio" name="genero" value="<%= genero.id %>"><%= genero.name %>
+            <% }) %>
+        </fieldset>
+        <fieldset>
+            <label for="actores">Reparto:</label>
+            <br>
+            <% actores.forEach(actor => { %>
+                <input type= "checkbox" name="actores" value="<%= actor.id%>"><%= actor.first_name + " " + actor.last_name %>
+                <br>
+            <% }) %>
+        </fieldset>
             <button type="submit">Editar</button>
             <button type="reset">Resetear</button>
         </fieldset>
