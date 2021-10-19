@@ -1,4 +1,5 @@
 const db = require("../database/models");
+const { validationResult } = require('express-validator');
 
 module.exports = {
     detalle: async (req,res) => {
@@ -14,7 +15,19 @@ module.exports = {
     },
     guardar: async (req,res) => {
         try{
-            let actores = req.body.actores 
+            let resultadoValidacion = validationResult(req)
+            let generos = await db.Genre.findAll();
+            let actores = await db.Actor.findAll();
+
+            if(resultadoValidacion.errors.length > 0){
+                return res.render("crearPelicula",{
+                    errors: resultadoValidacion.mapped(),
+                    oldData: req.body,
+                    generos,actores
+                })
+            }
+
+            let actores2 = req.body.actores 
             
             await db.Movie.create({
                 title: req.body.titulo,
@@ -28,7 +41,7 @@ module.exports = {
             let peliculas = await db.Movie.findAll();
             let peliculaReciente = peliculas[peliculas.length - 1];
             
-            await peliculaReciente.setActors(actores)
+            await peliculaReciente.setActors(actores2)
 
             return res.redirect("/pelicula/detalle/" + peliculaReciente.id)
         }
@@ -46,7 +59,19 @@ module.exports = {
     },
     actualizar: async (req,res) => {
         try{
-            let actores = req.body.actores 
+            let resultadoValidacion = validationResult(req)
+            let generos = await db.Genre.findAll();
+            let actores = await db.Actor.findAll();
+
+            if(resultadoValidacion.errors.length > 0){
+                return res.render("editarPelicula",{
+                    errors: resultadoValidacion.mapped(),
+                    oldData: req.body,
+                    generos,actores
+                })
+            }
+
+            let actores2 = req.body.actores 
             
             let pelicula = await db.Movie.findByPk(req.params.id);
 
@@ -59,7 +84,7 @@ module.exports = {
                 genre_id: req.body.genero
         },{ where: { id: req.params.id }});
             
-            await pelicula.setActors(actores)
+            await pelicula.setActors(actores2)
             
             return res.redirect("/pelicula/detalle/" + pelicula.id)
         }

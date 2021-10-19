@@ -10,6 +10,9 @@ const mainRouter = require("./routes/mainRouter");
 const peliculasRouter = require("./routes/peliculasRouter");
 const usuariosRouter = require("./routes/usuariosRouter");
 
+//------Requires de Middlewares------
+const usuario = require("./middlewares/usuario");
+
 //------Levantando el Servidor------
 app.set("port", process.env.PORT || 3000);
 app.listen(app.get("port"), () => console.log("Server start in http://localhost:"+app.get("port")));
@@ -21,6 +24,9 @@ app.use(session({secret:"Buenas pelis"}));
 
 //------EJS Template Engine------
 app.set("view engine", "ejs");
+
+//------Middlewares------
+//app.use(usuario);
 
 //-------Rutas------
 app.use(mainRouter);

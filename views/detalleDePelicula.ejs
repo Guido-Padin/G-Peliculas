@@ -35,9 +35,12 @@
         <h3>pelicula aún no tiene reparto</h3> 
     <% } %>
     <br>
-    <button><a href="/pelicula/editar/<%= pelicula.id %>">Editar pelicula</a></button>
+    <% if (usuario.admin == 1) { %>
+        <button><a href="/pelicula/editar/<%= pelicula.id %>">Editar pelicula</a></button>
     <form action="/pelicula/borrar/<%= pelicula.id %>?_method=DELETE" method="POST">
         <button type="submit">Borrar pelicula</button>
     </form>
+    <% } %>
+    
 </body>
 </html>
