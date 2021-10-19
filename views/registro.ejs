@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .text-danger{
+            color: red;
+        }
+    </style>
     <title>Registrarse</title>
 </head>
 <body>
@@ -12,7 +17,7 @@
     <form action="/usuario/guardar" method="POST">
         <fieldset>
             <label for="nombreCompleto">Nombre Completo:</label>
-            <input type="text" name="nombre"
+            <input type="text" name="nombre" placeholder="Jaime Fulanito"
             value="<%= locals.oldData ? oldData.nombre : null %> ">
             <% if (locals.errors && errors.nombre) { %>
                 <div class="text-danger">
@@ -22,7 +27,7 @@
         </fieldset>
         <fieldset>
             <label for="correo">Correo Electronico:</label>
-            <input type="text" name="correo"
+            <input type="text" name="correo" placeholder="example@mail.com"
             value="<%= locals.oldData ? oldData.correo : null %> ">
             <% if (locals.errors && errors.correo) { %>
                 <div class="text-danger">
@@ -32,8 +37,7 @@
         </fieldset>
         <fieldset>
             <label for="contraseña">Contraseña:</label>
-            <input type="password" name="clave"
-            value="<%= locals.oldData ? oldData.clave : null %> ">
+            <input type="password" name="clave">
             <% if (locals.errors && errors.clave) { %>
                 <div class="text-danger">
                     <%= errors.clave.msg %> 

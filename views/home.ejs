@@ -9,12 +9,18 @@
 <body>
     <h1>Bienvenidos a G-Peliculas!!</h1>
     <br>
-    <button><a href="/usuario/ingresar">Ingresar</a></button>
-    <button><a href="/usuario/registrarse">Registrarse</a></button>
-    <button><a href="/usuario/cerrarSesion">Cerrar Sesión</a></button>
+    <% if (user != null) { %>
+        <h3>Hola <%= user.name %>!</h3>
+        <button><a href="/usuario/cerrarSesion">Cerrar Sesión</a></button>
+    <% }else{ %>
+        <button><a href="/usuario/ingresar">Ingresar</a></button>
+        <button><a href="/usuario/registrarse">Registrarse</a></button>
+    <% } %>
     <br>
     <h2>Nuestra seleccion de peliculas:</h2>
-    <button><a href="pelicula/crear">Añadir pelicula</a></button>
+    <% if (user != null && user.admin == 1) { %>
+        <button><a href="pelicula/crear">Añadir pelicula</a></button>
+    <% } %>
     <br>
     <ul>
         <% peliculas.forEach(pelicula => { %>

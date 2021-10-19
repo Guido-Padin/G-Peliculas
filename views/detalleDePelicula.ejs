@@ -7,6 +7,11 @@
     <title>Detalle de <%= pelicula.title %> </title>
 </head>
 <body>
+    <% if (user != null) { %>
+        <h3>Hola <%= user.name %>!</h3>
+        <button><a href="/usuario/cerrarSesion">Cerrar Sesión</a></button>
+    <% } %>
+    <button><a href="/">Volver al inicio</a></button>
     <h1>Toda nuestra información de <%= pelicula.title %></h1>
     <h3>TITULO: <%= pelicula.title %></h3>
     <h3>RATING: <%= pelicula.rating %></h3>
@@ -35,11 +40,11 @@
         <h3>pelicula aún no tiene reparto</h3> 
     <% } %>
     <br>
-    <% if (usuario.admin == 1) { %>
+    <% if (user != null && user.admin == 1) { %>
         <button><a href="/pelicula/editar/<%= pelicula.id %>">Editar pelicula</a></button>
-    <form action="/pelicula/borrar/<%= pelicula.id %>?_method=DELETE" method="POST">
-        <button type="submit">Borrar pelicula</button>
-    </form>
+        <form action="/pelicula/borrar/<%= pelicula.id %>?_method=DELETE" method="POST">
+            <button type="submit">Borrar pelicula</button>
+        </form>
     <% } %>
     
 </body>

@@ -3,27 +3,27 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
 
 module.exports = {
-    login: async (req,res) => {
-        return res.render("login",{title:"Acceso"})
+    login: (req,res) => {
+        return res.render("login")
     },
     acceso: async (req,res) => {
         try{
-            const errors = validationResult(req);
+            let resultadoValidacion = validationResult(req)
             
-            if (!errors.isEmpty()){
-                return res.render("/", { errors: errors.mapped(),title:"Acceso", old:req.body });
+            if(resultadoValidacion.errors.length > 0){
+                return res.render("login",{
+                    errors: resultadoValidacion.mapped(),
+                    oldData: req.body
+                })
             }else{
                 let usuario = await db.User.findOne({where: {email: req.body.correo}});
                 req.session.user = usuario;
-                
-                if(req.body.recordarme){
-                    res.cookie("email",req.body.correo,{maxAge:300000})
-                }
                 
                 return res.redirect("/")
             }
         }catch(error){
             res.send(error)
+            console.log(error);
         }
     },
     registrarse: (req,res) => {

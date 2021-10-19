@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .text-danger{
+            color: red;
+        }
+    </style>
     <title>Ingresar</title>
 </head>
 <body>
@@ -12,11 +17,22 @@
     <form action="/usuario/acceder" method="POST">
         <fieldset>
             <label for="correo">Correo Electronico:</label>
-            <input type="text" name="correo">
+            <input type="text" name="correo" placeholder="example@mail.com"
+            value="<%= locals.oldData ? oldData.correo : null %> ">
+            <% if (locals.errors && errors.correo) { %>
+                <div class="text-danger">
+                    <%= errors.correo.msg %> 
+                </div>
+            <% } %>
         </fieldset>
         <fieldset>
             <label for="contraseña">Contraseña:</label>
             <input type="password" name="clave">
+            <% if (locals.errors && errors.clave) { %>
+                <div class="text-danger">
+                    <%= errors.clave.msg %> 
+                </div>
+            <% } %>
         </fieldset>
         <fieldset>
             <p>¿No estas registrado?</p>

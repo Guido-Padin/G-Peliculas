@@ -60,6 +60,7 @@ module.exports = {
     actualizar: async (req,res) => {
         try{
             let resultadoValidacion = validationResult(req)
+            let pelicula = await db.Movie.findByPk(req.params.id);
             let generos = await db.Genre.findAll();
             let actores = await db.Actor.findAll();
 
@@ -67,13 +68,11 @@ module.exports = {
                 return res.render("editarPelicula",{
                     errors: resultadoValidacion.mapped(),
                     oldData: req.body,
-                    generos,actores
+                    generos,actores,pelicula
                 })
             }
 
             let actores2 = req.body.actores 
-            
-            let pelicula = await db.Movie.findByPk(req.params.id);
 
             await db.Movie.update({
                 title: req.body.titulo,
@@ -84,7 +83,9 @@ module.exports = {
                 genre_id: req.body.genero
         },{ where: { id: req.params.id }});
             
-            await pelicula.setActors(actores2)
+            if(actores2 != null){
+                await pelicula.setActors(actores2)
+            }
             
             return res.redirect("/pelicula/detalle/" + pelicula.id)
         }
