@@ -3,7 +3,7 @@ Entrega del Challenge NodeJS
 Alumno: Guido Padin
 
 Dentro del proyecto se encuentra una carpeta con el nombre 'sql', donde esta el archivo original de movies_db.
-De este archivo hice la separacion de las tablas que voy a necesitar(movies, actors, actor_movie, genres, y users), y de los inserts necesarios. Ademas agregue la columna 'deleted_at' para poder realizar la eliminacion de datos usando la funcionalidad 'paranoid' de sequelize, y tambien la columna 'admin' en users para poder diferenciar al usuario admin del resto
+De este archivo hice la separacion de las tablas que voy a necesitar(movies, actors, actor_movie, genres, y users), y de los inserts necesarios. Ademas agregue la columna 'deleted_at' para poder realizar la eliminacion de datos usando la funcionalidad 'paranoid' de sequelize, y tambien la columna 'admin' en users para poder diferenciar al usuario admin del resto. La contraseña del usuario Admin es admin2021
 
 Pasos a seguir:
 
