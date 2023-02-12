@@ -4,8 +4,9 @@
   "description": "Último desafio de la cursada",
   "main": "app.js",
   "scripts": {
-    "test": "nodemon app.js -e css,html,js,mjs",
-    "start": "node src/app.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
